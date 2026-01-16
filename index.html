@@ -1,0 +1,2448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SleepyGo - India's Premium Hotel Booking Platform</title>
+    <style>
+        :root {
+            --primary: #ff091db6;
+            --primary-dark: #210aeb;
+            --accent: #10b981;
+            --accent-light: #d1fae5;
+            --bg: #f8fafc;
+            --surface: #ffffff;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --border: #e5e7eb;
+            --success: #10b981;
+            --error: #000000;
+        }
+        .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.logo img {
+    height: 40px;
+    width: auto;
+}
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* Header Navigation */
+        header {
+            background: var(--surface);
+            padding: 16px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        nav {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(30, 64, 175, 0.05);
+        }
+
+        .btn-lg {
+            padding: 14px 32px;
+            font-size: 16px;
+        }
+
+        /* Hero Section */
+.hero {
+    position: relative;
+    color: white;
+    padding: 60px 40px;
+    text-align: center;
+    overflow: hidden;
+
+    background: var(--hero-bg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    transition: background-image 1s ease-in-out;
+}
+
+
+@media (max-width: 768px) {
+    .hero {
+        background-attachment: scroll;
+    }
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 400px;
+    height: 400px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+}
+
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 18px;
+            opacity: 0.95;
+            margin-bottom: 32px;
+        }
+
+        /* Search Box */
+        .search-container {
+            background: rgba(255, 255, 255, 0.753);
+            border-radius: 16px;
+            padding: 24px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr auto;
+            gap: 16px;
+            margin-top: 32px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .search-field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .search-field label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .search-field input,
+        .search-field select {
+            padding: 12px 14px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .search-field input:focus,
+        .search-field select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+        }
+
+        .search-btn {
+            align-self: flex-end;
+            padding: 12px 28px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-bottom: 2px;
+        }
+
+        .search-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Food Menu Styles */
+        .food-categories {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .food-category-btn {
+            padding: 8px 12px;
+            border: 2px solid var(--border);
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.3s;
+            color: var(--text);
+        }
+
+        .food-category-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .food-category-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .food-items-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 12px;
+            overflow-y: auto;
+            padding-right: 8px;
+        }
+
+        .food-item-card {
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .food-item-card:hover {
+            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.15);
+            border-color: var(--accent);
+        }
+
+
+        .food-item-image {
+            font-size: 36px;
+            margin-bottom: 8px;
+            line-height: 1;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-size: cover;
+            background-position: center;
+        }
+
+
+        .food-item-name {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 4px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .food-item-desc {
+            font-size: 11px;
+            color: var(--text-light);
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+
+        .food-item-price {
+            font-size: 13px;
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .food-item-quantity {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #f8fafc;
+            border-radius: 6px;
+            padding: 4px;
+            justify-content: center;
+        }
+
+        .food-item-quantity button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            padding: 2px 4px;
+            transition: all 0.2s;
+        }
+
+        .food-item-quantity button:hover {
+            transform: scale(1.2);
+        }
+
+        .food-item-quantity input {
+            width: 30px;
+            text-align: center;
+            border: none;
+            background: white;
+            font-weight: 600;
+            font-size: 12px;
+        }
+
+        .food-cart-badge {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--accent);
+            color: white;
+            padding: 16px 24px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 500;
+        }
+
+        .food-cart-badge:hover {
+            transform: scale(1.05);
+        }
+
+        .food-cart-count {
+            background: var(--primary);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        /* Food Cart Modal */
+        .food-cart-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: flex-end;
+            z-index: 1000;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .food-cart-modal.active {
+            display: flex;
+        }
+
+        .food-cart-panel {
+            background: white;
+            width: 400px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            box-shadow: -5px 0 20px rgba(0, 0, 0, 0.15);
+            overflow-y: auto;
+        }
+
+        .food-cart-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .food-cart-header h3 {
+            margin: 0;
+            color: var(--primary);
+            font-size: 18px;
+        }
+
+        .food-cart-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-light);
+            transition: all 0.3s;
+        }
+
+        .food-cart-close:hover {
+            transform: rotate(90deg);
+        }
+
+        .food-cart-items {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .food-cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            background: var(--bg);
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+
+        .food-cart-item-info h4 {
+            margin: 0 0 4px 0;
+            font-size: 14px;
+            color: var(--text);
+        }
+
+        .food-cart-item-info p {
+            margin: 0;
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        .food-cart-item-delete {
+            background: var(--error);
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s;
+        }
+
+        .food-cart-item-delete:hover {
+            background: #dc2626;
+        }
+
+        .food-cart-footer {
+            padding: 20px;
+            border-top: 2px solid var(--border);
+            background: var(--bg);
+        }
+
+        .food-cart-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .food-checkout-btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .food-checkout-btn:hover {
+            background: #059669;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+
+        .food-empty-message {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        /* Cities Section */
+        .cities-section {
+            padding: 60px 40px;
+            background: var(--surface);
+        }
+
+        .section-title {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            text-align: center;
+            color: var(--text);
+        }
+
+        .cities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+
+        .city-card {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            cursor: pointer;
+            height: 320px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .city-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .city-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .city-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .city-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.7) 100%);
+            display: flex;
+            align-items: flex-end;
+            padding: 24px;
+            color: white;
+        }
+
+        .city-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            gap: 16px;
+        }
+
+        .city-name {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .city-rooms {
+            background: var(--primary);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        /* Hotels Listing */
+        .hotels-section {
+            padding: 60px 40px;
+            background: var(--bg);
+        }
+
+        .filters {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .filter-chip {
+            padding: 8px 16px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            background: var(--surface);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .filter-chip:hover,
+        .filter-chip.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .hotels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        .hotel-card {
+            background: var(--surface);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .hotel-card:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .hotel-image {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .hotel-content {
+            padding: 24px;
+        }
+
+        .hotel-name {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        .hotel-location {
+            color: var(--text-light);
+            font-size: 14px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .stars {
+            color: #fbbf24;
+            font-size: 14px;
+        }
+
+        .rating-value {
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .hotel-amenities {
+            display: flex;
+            gap: 12px;
+            margin: 16px 0;
+            flex-wrap: wrap;
+        }
+
+        .amenity {
+            background: var(--accent-light);
+            color: var(--accent);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .price-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+            margin-top: 16px;
+        }
+
+        .price {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .price-label {
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        .book-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .book-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Hotel Detail Modal */
+        .detail-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .detail-modal.active {
+            display: flex;
+        }
+
+        .detail-content {
+            background: white;
+            border-radius: 16px;
+            max-width: 1000px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .detail-header {
+            position: relative;
+            height: 400px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: flex-end;
+            padding: 24px;
+        }
+        .detail-header img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.detail-header::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.6),
+        rgba(0,0,0,0.2)
+    );
+}
+
+
+        .detail-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .detail-close:hover {
+            transform: rotate(90deg);
+        }
+
+        .detail-title {
+    position: relative;
+    z-index: 2;
+    color: white;
+}
+
+.detail-close {
+    z-index: 3;
+}
+
+        .detail-title h1 {
+            font-size: 36px;
+            margin: 0 0 8px 0;
+        }
+
+        .detail-rating {
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 18px;
+        }
+
+        .detail-body {
+            padding: 40px;
+        }
+
+        .detail-section {
+            margin-bottom: 40px;
+        }
+
+        .detail-section-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .location-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            background: var(--accent-light);
+            padding: 24px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .location-detail {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .location-detail-icon {
+            font-size: 24px;
+        }
+
+        .location-detail-text h4 {
+            color: var(--primary);
+            margin: 0 0 4px 0;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .location-detail-text p {
+            color: var(--text);
+            margin: 0;
+        }
+
+        .price-box {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 24px;
+            border-radius: 12px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .price-info h3 {
+            margin: 0 0 12px 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .price-amount {
+            font-size: 32px;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .amenities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .amenity-card {
+            background: var(--bg);
+            padding: 16px;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .amenity-card:hover {
+            border-color: var(--primary);
+            background: var(--accent-light);
+        }
+
+        .amenity-icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .amenity-name {
+            font-weight: 600;
+            color: var(--text);
+            font-size: 14px;
+        }
+
+        .features-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: var(--bg);
+            border-radius: 8px;
+        }
+
+        .feature-item::before {
+            content: '✓';
+            color: var(--success);
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .contact-section {
+            background: var(--bg);
+            padding: 24px;
+            border-radius: 12px;
+        }
+
+        .contact-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .contact-form-full {
+            grid-column: 1 / -1;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+        }
+
+        .detail-footer {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            padding: 40px;
+            border-top: 1px solid var(--border);
+        }
+
+        .detail-footer button {
+            padding: 14px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .detail-footer .btn-secondary {
+            background: var(--bg);
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .detail-footer .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .detail-footer .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .detail-footer .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
+        }
+
+        /* Features Section */
+        .features-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            padding: 40px;
+            background: var(--surface);
+        }
+
+        .feature-box {
+            padding: 24px;
+            background: linear-gradient(135deg, rgba(30, 64, 175, 0.05) 0%, rgba(16, 185, 129, 0.05) 100%);
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 12px;
+        }
+
+        .feature-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .feature-description {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text);
+            color: white;
+            padding: 48px 40px 24px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 16px;
+            font-size: 16px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 8px;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 24px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 16px;
+                padding: 16px 20px;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .search-container {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding: 40px 20px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .cities-section,
+            .hotels-section {
+                padding: 40px 20px;
+            }
+
+            .hotels-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cities-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+
+            .food-categories {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .food-items-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .food-cart-panel {
+                width: 100%;
+            }
+
+            .features-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .new-footer {
+    background: #0f172a;
+    color: #e5e7eb;
+    padding: 60px 40px 30px;
+}
+
+.footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 2fr;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-brand p {
+    font-size: 14px;
+    color: #9ca3af;
+    margin-top: 12px;
+    line-height: 1.6;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 24px;
+    font-weight: 700;
+    color: white;
+}
+
+.footer-logo img {
+    height: 40px;
+}
+
+.footer-links h4,
+.footer-newsletter h4 {
+    margin-bottom: 14px;
+    font-size: 16px;
+    color: white;
+}
+
+.footer-links a {
+    display: block;
+    color: #9ca3af;
+    text-decoration: none;
+    margin-bottom: 8px;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: #38bdf8;
+}
+
+.footer-newsletter p {
+    font-size: 14px;
+    color: #9ca3af;
+    margin-bottom: 12px;
+}
+
+.newsletter-box {
+    display: flex;
+    background: #020617;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.newsletter-box input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: white;
+}
+
+.newsletter-box button {
+    background: #38bdf8;
+    border: none;
+    padding: 10px 16px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.footer-bottom-new {
+    border-top: 1px solid #1e293b;
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: #9ca3af;
+}
+.footer-bottom-new strong {
+    color: #38bdf8;
+    font-weight: 700;
+}
+
+
+.footer-social a {
+    margin-left: 12px;
+    font-size: 18px;
+    color: #9ca3af;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-social a:hover {
+    color: #38bdf8;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .footer-top {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-bottom-new {
+        flex-direction: column;
+        gap: 12px;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+    <img src="file:///C:/Users/Louie%20Andrew/Downloads/Screenshot_2026-01-16_222342-removebg-preview.png" alt="">
+    <span>SleepyGo</span>
+</div>
+
+        <nav>
+            <a href="#hotels">Hotels</a>
+            <a href="#destinations">Destinations</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <div class="auth-buttons">
+            <button class="btn btn-secondary">Sign In</button>
+            <button class="btn btn-primary">Sign Up</button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Book Your Perfect Hotel Stay</h1>
+            <p>Explore over 500,000 rooms across 50+ Indian cities and worldwide</p>
+            <div class="search-container">
+                <div class="search-field">
+                    <label>Location</label>
+                    <select id="citySelect">
+                        <option>Select a city...</option>
+                        <option>Mumbai</option>
+                        <option>Delhi</option>
+                        <option>Bangalore</option>
+                        <option>Jaipur</option>
+                        <option>Goa</option>
+                        <option>Hyderabad</option>
+                        <option>Kerala</option>
+                        <option>Pune</option>
+                    </select>
+                </div>
+
+                <div class="search-field">
+                    <label>Check-In</label>
+                    <input type="date" id="checkInDate">
+                </div>
+
+                <div class="search-field">
+                    <label>Check-Out</label>
+                    <input type="date" id="checkOutDate">
+                </div>
+
+                <div class="search-field">
+                    <label>Guests</label>
+                    <select id="guestCount">
+                        <option>1 Guest</option>
+                        <option>2 Guests</option>
+                        <option>3 Guests</option>
+                        <option>4+ Guests</option>
+                    </select>
+                </div>
+
+                <button class="search-btn" onclick="searchHotels()">Search</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Food Cart -->
+    <div class="food-cart-modal" id="foodCartModal">
+        <div class="food-cart-panel">
+            <div class="food-cart-header">
+                <h3>🛒 Food Cart</h3>
+                <button class="food-cart-close" onclick="closeFoodCart()">×</button>
+            </div>
+            <div class="food-cart-items" id="foodCartItems">
+                <div class="food-empty-message">Your cart is empty</div>
+            </div>
+            <div class="food-cart-footer">
+                <div class="food-cart-total">
+                    <span>Total:</span>
+                    <span id="foodCartTotal">₹0</span>
+                </div>
+                <button class="food-checkout-btn" onclick="checkoutFood()">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popular Cities -->
+    <section class="cities-section" id="destinations">
+        <h2 class="section-title">Popular Destinations</h2>
+        <div class="cities-grid">
+            <div class="city-card" onclick="selectCity('Mumbai')">
+                <img src="https://s7ap1.scene7.com/is/image/incredibleindia/1-bandra-worli-sea-ink-mumbai-maharashtra-attr-hero?qlt=82&ts=1742195253156" alt="Mumbai">
+                <div class="city-overlay">
+                    <div class="city-info">
+                        <div class="city-name">Mumbai</div>
+                        <div class="city-rooms">2,480 Hotels</div>
+                    </div>
+                </div>
+            </div>
+            <div class="city-card" onclick="selectCity('Delhi')">
+                <img src="https://cdn.britannica.com/37/189837-050-F0AF383E/New-Delhi-India-War-Memorial-arch-Sir.jpg" alt="Delhi">
+                <div class="city-overlay">
+                    <div class="city-info">
+                        <div class="city-name">Delhi</div>
+                        <div class="city-rooms">1,950 Hotels</div>
+                    </div>
+                </div>
+            </div>
+            <div class="city-card" onclick="selectCity('Bangalore')">
+                <img src="https://lp-cms-production.imgix.net/2019-06/9483508eeee2b78a7356a15ed9c337a1-bengaluru-bangalore.jpg?auto=format,compress&q=72&w=1095&fit=crop&crop=faces,edges" alt="Bangalore">
+                <div class="city-overlay">
+                    <div class="city-info">
+                        <div class="city-name">Bangalore</div>
+                        <div class="city-rooms">1,620 Hotels</div>
+                    </div>
+                </div>
+            </div>
+            <div class="city-card" onclick="selectCity('Jaipur')">
+                <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=600&h=400&fit=crop" alt="Jaipur">
+                <div class="city-overlay">
+                    <div class="city-info">
+                        <div class="city-name">Jaipur</div>
+                        <div class="city-rooms">890 Hotels</div>
+                    </div>
+                </div>
+            </div>
+            <div class="city-card" onclick="selectCity('Goa')">
+                <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&h=400&fit=crop" alt="Goa">
+                <div class="city-overlay">
+                    <div class="city-info">
+                        <div class="city-name">Goa</div>
+                        <div class="city-rooms">3,210 Hotels</div>
+                    </div>
+                </div>
+            </div>
+            <div class="city-card" onclick="selectCity('Hyderabad')">
+                <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/98/f7/df/charminar.jpg?w=1400&h=500&s=1" alt="Hyderabad">
+                <div class="city-overlay">
+                    <div class="city-info">
+                        <div class="city-name">Hyderabad</div>
+                        <div class="city-rooms">2,750 Hotels</div>
+                    </div>
+                </div>
+            </div>
+            <div class="city-card" onclick="selectCity('Kerala')">
+                <img src="https://media.worldnomads.com/Explore/india/kerala-backwaters-canoe-istock.jpg" alt="Kerala">
+                <div class="city-overlay">
+                    <div class="city-info">
+                        <div class="city-name">Kerala</div>
+                        <div class="city-rooms">1,540 Hotels</div>
+                    </div>
+                </div>
+            </div>
+            <div class="city-card" onclick="selectCity('Pune')">
+                <img src="https://media.gettyimages.com/id/2166532372/photo/puna-coast.jpg?s=2048x2048&w=gi&k=20&c=_X_ctYeHA7pGwppg7n3VEnoQsMtjoD07Z7rTbELzfqg=" alt="Pune">
+                <div class="city-overlay">
+                    <div class="city-info">
+                        <div class="city-name">Pune</div>
+                        <div class="city-rooms">680 Hotels</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section style="background: linear-gradient(135deg, rgba(30, 64, 175, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%); padding: 60px 40px;">
+        <h2 class="section-title">Why Choose SleepyGo?</h2>
+        <div class="features-container">
+            <div class="feature-box">
+                <div class="feature-icon">🌍</div>
+                <div class="feature-title">50+ Indian Cities</div>
+                <div class="feature-description">Explore over 500,000 rooms across the world's most beautiful destinations</div>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon">💳</div>
+                <div class="feature-title">Secure Payments</div>
+                <div class="feature-description">Credit Card, UPI, Net Banking & Wallets for seamless transactions</div>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon">📱</div>
+                <div class="feature-title">Mobile Friendly</div>
+                <div class="feature-description">Seamless booking on all devices - desktop, tablet, or mobile</div>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon">⭐</div>
+                <div class="feature-title">Loyalty Rewards</div>
+                <div class="feature-description">Earn points on every booking and redeem for discounts</div>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon">🔔</div>
+                <div class="feature-title">Live Updates</div>
+                <div class="feature-description">Real-time booking status and instant notifications</div>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon">👥</div>
+                <div class="feature-title">24/7 Support</div>
+                <div class="feature-description">Round-the-clock customer assistance for all your needs</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hotels Listing -->
+    <section class="hotels-section" id="hotels">
+        <h2 class="section-title">Featured Hotels</h2>
+        <div class="filters">
+            <span style="font-weight: 600; color: var(--text); margin-right: 8px;">Filter by:</span>
+            <div class="filter-chip active" onclick="toggleFilter(this, '5-star')">⭐ 5-Star</div>
+            <div class="filter-chip" onclick="toggleFilter(this, '4-star')">⭐ 4-Star</div>
+            <div class="filter-chip" onclick="toggleFilter(this, 'budget')">💰 Budget Friendly</div>
+            <div class="filter-chip" onclick="toggleFilter(this, 'luxury')">👑 Luxury</div>
+        </div>
+        <div class="hotels-grid" id="hotelsList">
+            <!-- Hotels will be dynamically added here -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+<footer class="new-footer">
+    <div class="footer-top">
+        <!-- Brand -->
+        <div class="footer-brand">
+            <div class="footer-logo">
+                <img src="file:///C:/Users/Louie%20Andrew/Downloads/Screenshot_2026-01-16_222342-removebg-preview.png" alt="SleepyGo">
+                <span>SleepyGo</span>
+            </div>
+            <p>
+                SleepyGo helps you book the perfect hotel stay with comfort, trust, and the best prices across India.
+            </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-links">
+            <h4>Quick Links</h4>
+            <a href="#hotels">Hotels</a>
+            <a href="#destinations">Destinations</a>
+            <a href="#offers">Offers</a>
+            <a href="#blog">Travel Blog</a>
+        </div>
+
+        <!-- Support -->
+        <div class="footer-links">
+            <h4>Support</h4>
+            <a href="#contact">Contact Us</a>
+            <a href="#faq">FAQs</a>
+            <a href="#help">Help Center</a>
+            <a href="#refund">Refund Policy</a>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="footer-newsletter">
+            <h4>Subscribe</h4>
+            <p>Get exclusive hotel deals & travel updates.</p>
+            <div class="newsletter-box">
+                <input type="email" placeholder="Enter your email">
+                <button>Subscribe</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom -->
+   <div class="footer-bottom-new">
+    <span>
+        © 2025 SleepyGo. All rights reserved. |
+        Developed by <strong>Louie Andrew</strong>
+    </span>
+    <div class="footer-social">
+        <a href="#">🌐</a>
+        <a href="#">📘</a>
+        <a href="#">🐦</a>
+        <a href="#">📸</a>
+    </div>
+</div>
+
+</footer>
+
+
+    <script> 
+
+// HERO BACKGROUND IMAGE SLIDER (5 SECONDS)
+const heroImages = [
+    "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1600",
+    "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=1600",
+    "https://gokulamhotels.com/images/property/park/park-coimbatore/rooms/executive/Executive_Room-01.webp",
+    "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1600"
+];
+
+let heroIndex = 0;
+
+function changeHeroImage() {
+    const hero = document.querySelector('.hero');
+    hero.style.setProperty(
+        '--hero-bg',
+        `url("${heroImages[heroIndex]}")`
+    );
+    heroIndex = (heroIndex + 1) % heroImages.length;
+}
+
+// Start slider
+setInterval(changeHeroImage, 5000);
+changeHeroImage(); // load first image immediately
+
+
+        // Food Menu Data with Descriptions
+        const foodMenu = {
+            breakfast: [
+                { id: 1, name: 'Idli Sambar', price: 120, emoji: '🥘', desc: 'Steamed rice cakes', img: 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/103705059.jpg?k=9e078265b31ad1815a573da8ed2a665f863e3925e1efd730df703421868a2ada&o=' },
+                { id: 2, name: 'Dosa Masala', price: 150, emoji: '🥞', desc: 'Crispy crepe', img: 'https://images.unsplash.com/photo-1585935077930-bedcc0a45f38?w=500&h=500&fit=crop' },
+                { id: 3, name: 'Poha', price: 80, emoji: '🥘', desc: 'Flattened rice', img: 'https://images.unsplash.com/photo-1645112411341-6c4ee32510d9?w=500&h=500&fit=crop' },
+                { id: 4, name: 'Upma', price: 90, emoji: '🍲', desc: 'Savory porridge', img: 'https://images.unsplash.com/photo-1585937421945-7ab130a50625?w=500&h=500&fit=crop' },
+                { id: 5, name: 'Pancakes', price: 200, emoji: '🥞', desc: 'Stack of fluffy', img: 'https://images.unsplash.com/photo-1599599810694-b308ca884933?w=500&h=500&fit=crop' },
+                { id: 26, name: 'Paratha', price: 110, emoji: '🫓', desc: 'Layered bread', img: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=500&h=500&fit=crop' },
+            ],
+            lunch: [
+                { id: 6, name: 'Butter Chicken', price: 350, emoji: '🍗', desc: 'Creamy curry', img: 'https://images.unsplash.com/photo-1603894542802-beaab60908d1?w=500&h=500&fit=crop' },
+                { id: 7, name: 'Paneer Tikka', price: 300, emoji: '🍖', desc: 'Grilled cheese', img: 'https://images.unsplash.com/photo-1532076153551-18f7289e4178?w=500&h=500&fit=crop' },
+                { id: 8, name: 'Biryani', price: 280, emoji: '🍚', desc: 'Rice & meat', img: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a104?w=500&h=500&fit=crop' },
+                { id: 9, name: 'Tandoori Fish', price: 400, emoji: '🐟', desc: 'Clay oven fish', img: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&h=500&fit=crop' },
+                { id: 10, name: 'Dal Makhani', price: 250, emoji: '🍲', desc: 'Creamy lentils', img: 'https://images.unsplash.com/photo-1597103442097-8c74c119f3d3?w=500&h=500&fit=crop' },
+                { id: 27, name: 'Chole Bhature', price: 180, emoji: '🫓', desc: 'Puffed bread', img: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=500&h=500&fit=crop' },
+            ],
+            dinner: [
+                { id: 11, name: 'Grilled Steak', price: 550, emoji: '🥩', desc: 'Prime cut meat', img: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&h=500&fit=crop' },
+                { id: 12, name: 'Pasta Carbonara', price: 320, emoji: '🍝', desc: 'Italian pasta', img: 'https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=500&h=500&fit=crop' },
+                { id: 13, name: 'Chicken Curry', price: 300, emoji: '🍛', desc: 'Spiced chicken', img: 'https://images.unsplash.com/photo-1588166524941-3bf0c3087059?w=500&h=500&fit=crop' },
+                { id: 14, name: 'BBQ Ribs', price: 450, emoji: '🍖', desc: 'Smoky ribs', img: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=500&h=500&fit=crop' },
+                { id: 15, name: 'Garlic Shrimp', price: 380, emoji: '🦐', desc: 'Garlic prawns', img: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=500&h=500&fit=crop' },
+                { id: 28, name: 'Rogan Josh', price: 380, emoji: '🍛', desc: 'Aromatic stew', img: 'https://images.unsplash.com/photo-1588166524941-3bf0c3087059?w=500&h=500&fit=crop' },
+            ],
+            snacks: [
+                { id: 16, name: 'Samosa', price: 40, emoji: '🥟', desc: 'Fried triangle', img: 'https://images.unsplash.com/photo-1585937421945-7ab130a50625?w=500&h=500&fit=crop' },
+                { id: 17, name: 'Pakora', price: 60, emoji: '🍟', desc: 'Fried fritters', img: 'https://images.unsplash.com/photo-1519789497674-04481ba34461?w=500&h=500&fit=crop' },
+                { id: 18, name: 'French Fries', price: 80, emoji: '🍟', desc: 'Crispy potatoes', img: 'https://images.unsplash.com/photo-1584581160537-1d50599917e7?w=500&h=500&fit=crop' },
+                { id: 19, name: 'Momo', price: 100, emoji: '🥟', desc: 'Steamed dumplings', img: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a104?w=500&h=500&fit=crop' },
+                { id: 20, name: 'Spring Roll', price: 70, emoji: '🌮', desc: 'Veggie roll', img: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&h=500&fit=crop' },
+                { id: 29, name: 'Bhel Puri', price: 50, emoji: '🥣', desc: 'Tangy snack mix', img: 'https://images.unsplash.com/photo-1645112411341-6c4ee32510d9?w=500&h=500&fit=crop' },
+            ],
+            beverages: [
+                { id: 21, name: 'Coffee', price: 60, emoji: '☕', desc: 'Brewed coffee', img: 'https://images.unsplash.com/photo-1559056199-641a0ac8b3f4?w=500&h=500&fit=crop' },
+                { id: 22, name: 'Tea', price: 40, emoji: '🫖', desc: 'Chai/Black tea', img: 'https://images.unsplash.com/photo-1597318345754-3f2ce7b3e1b6?w=500&h=500&fit=crop' },
+                { id: 23, name: 'Fresh Juice', price: 120, emoji: '🧃', desc: 'Orange juice', img: 'https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=500&h=500&fit=crop' },
+                { id: 24, name: 'Smoothie', price: 150, emoji: '🥤', desc: 'Fruit blend', img: 'https://images.unsplash.com/photo-1590301157890-4810ed183d3f?w=500&h=500&fit=crop' },
+                { id: 25, name: 'Cold Drink', price: 50, emoji: '🥤', desc: 'Chilled soda', img: 'https://images.unsplash.com/photo-1554866585-acbb2c245d98?w=500&h=500&fit=crop' },
+                { id: 30, name: 'Lassi', price: 80, emoji: '🥛', desc: 'Yogurt drink', img: 'https://images.unsplash.com/photo-1590959375944-abd886310e96?w=500&h=500&fit=crop' },
+            ]
+        };
+
+
+ // Sample Hotel Data
+const hotels = [
+    {
+        id: 1,
+        name: 'Taj Mahal Palace',
+        city: 'Mumbai',
+        location: 'Colaba, Mumbai',
+        address: 'Apollo Bunder, Colaba, Mumbai 400001',
+        phone: '+91 22-6665 3366',
+        email: 'reservations@tajmahalpalace.com',
+        rating: 4.8,
+        reviews: 2450,
+        amenities: ['WiFi', 'Pool', 'Spa', 'Restaurant', 'Gym', 'Bar', 'Room Service', 'Concierge'],
+        features: [
+            'Beachfront Location',
+            '24/7 Room Service',
+            'Free Airport Transfer',
+            'Multi-Cuisine Restaurant',
+            'Rooftop Bar with City Views',
+            'Business Center',
+            'Swimming Pool',
+            'Spa & Wellness Center'
+        ],
+        price: 8600,
+        category: '5-star luxury',
+        image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&h=400&fit=crop',
+        description: 'Experience luxury at its finest at Taj Mahal Palace, the iconic landmark hotel in Mumbai with breathtaking Arabian Sea views and world-class amenities.'
+    },
+    {
+        id: 2,
+        name: 'Rajput Heritage Hotel',
+        city: 'Delhi',
+        location: 'Connaught Place, Delhi',
+        address: 'Barakhamba Road, Connaught Place, New Delhi 110001',
+        phone: '+91 11-4119 0101',
+        email: 'info@rajputheritage.com',
+        rating: 4.6,
+        reviews: 1890,
+        amenities: ['WiFi', 'Gym', 'Bar', 'Conference', 'Restaurant', 'Lounge', 'Meeting Rooms', 'Parking'],
+        features: [
+            'Heritage Architecture',
+            'Located in Central Delhi',
+            'Fine Dining Options',
+            'Business Facilities',
+            '24-Hour Front Desk',
+            'Laundry Service',
+            'Travel Desk',
+            'Complimentary WiFi'
+        ],
+        price: 6800,
+        category: '4-star',
+        image: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&h=400&fit=crop',
+        description: 'Discover the charm of Delhi at Rajput Heritage Hotel, blending traditional architecture with modern amenities in the heart of Connaught Place.'
+    },
+
+
+            {
+                id: 3,
+                name: 'Bangalore Tech Park Hotel',
+                city: 'Bangalore',
+                location: 'Whitefield, Bangalore',
+                address: 'Whitefield Road, Bangalore 560066',
+                phone: '+91 80-4155 5555',
+                email: 'stay@bangaloretechpark.com',
+                rating: 4.7,
+                reviews: 2100,
+                amenities: ['WiFi', 'Rooftop Bar', 'Concierge', 'Gym', 'Restaurant', 'Conference Rooms', 'Parking', 'Room Service'],
+                features: ['Tech Hub Location', 'High-Speed Internet', 'Business Center', 'Modern Rooms', 'Fitness Center', 'In-Room Entertainment', 'Car Rental Service', '24-Hour Security'],
+                price: 5200,
+                category: '4-star', 
+                image: 'https://pix8.agoda.net/hotelImages/55315098/-1/abc28a3e3a39d89a6254e0b9a147727f.jpg?ce=0&s=1024x',
+                description: 'Your perfect stay in Bangalore\'s IT hub. Tech Park Hotel offers connectivity and comfort for business and leisure travelers alike.'
+            },
+            {
+                id: 4,
+                name: 'City Palace Resort',
+                city: 'Jaipur',
+                location: 'Pink City Centre, Jaipur',
+                address: 'Sansar Chand Road, Jaipur 302001',
+                phone: '+91 141-510 0100',
+                email: 'reservations@citypalaceresort.com',
+                rating: 4.9,
+                reviews: 3200,
+                amenities: ['WiFi', 'Heritage Tour', 'Spa', 'Multiple Restaurants', 'Pool', 'Gym', 'Bar', 'Garden'],
+                features: ['Heritage Property', 'Palace Architecture', 'Cultural Tours', 'Ayurvedic Spa', 'Traditional Cuisine', 'Courtyard Garden', 'Wedding Venue', 'Event Spaces'],
+                price: 7800,
+                category: '5-star luxury', 
+                image:'https://zolostays.com/blog/wp-content/uploads/2024/01/shutterstock_732843700-1-1160x738.jpg',
+                description: 'Step back in time at City Palace Resort, a magnificent heritage property showcasing Rajasthani royalty and culture with ultra-modern comforts.'
+            },
+            {
+                id: 5,
+                name: 'Goa Beach Retreat',
+                city: 'Goa',
+                location: 'Baga Beach, Goa',
+                address: 'Baga Beach Road, Goa 403516',
+                phone: '+91 832-227 5000',
+                email: 'bookings@goabeachretreat.com',
+                rating: 4.5,
+                reviews: 1650,
+                amenities: ['WiFi', 'Beach Access', 'Restaurant', 'Bar', 'Café', 'Water Sports', 'Parking', 'Room Service'],
+                features: ['Direct Beach Access', 'Water Sports Activities', 'Beach Bar', 'Sunset Views', 'Local Cuisine', 'Travel Desk', 'Budget-Friendly Rooms', 'Group Packages'],
+                price: 4500,
+                category: 'budget',
+                image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqLGkBcqnzq2j4XQiTXC3Lr-b2NMPYacmsAg&s',
+                description: 'Enjoy the beauty of Goa at Goa Beach Retreat. Direct beach access, water sports, and laid-back atmosphere perfect for beach lovers.'
+            },
+            {
+                id: 6,
+                name: 'Hyderabad Grand',
+                city: 'Hyderabad',
+                location: 'Banjara Hills, Hyderabad',
+                address: 'Road No. 2, Banjara Hills, Hyderabad 500034',
+                phone: '+91 40-2338 3333',
+                email: 'info@hyderabadgrand.com',
+                rating: 4.7,
+                reviews: 2850,
+                amenities: ['WiFi', 'Rooftop Bar', 'Gym', 'Restaurant', 'Lounge', 'Business Center', 'Parking', 'Laundry'],
+                features: ['Premium Location', 'City Skyline Views', 'Gourmet Dining', 'Executive Lounge', 'Fitness Center', 'Spa Services', 'Conference Facilities', 'Complimentary Breakfast'],
+                price: 6200,
+                category: '4-star',
+                image:'https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/202504211819394035-479d42b3-a382-4bb9-a21f-c6a41b128020.jpg?&output-quality=75&downsize=520:350&crop=520:350;2,0&output-format=jpg&downsize=480:336&crop=480:336',
+                description: 'Experience sophisticated hospitality at Hyderabad Grand in the upscale Banjara Hills, offering premium services and stunning city views.'
+            },
+            {
+                id: 7,
+                name: 'Kerala Houseboat',
+                city: 'Kerala',
+                location: 'Kochi, Kerala',
+                address: 'Kumarakom, Kochi, Kerala 686566',
+                phone: '+91 484-242 4215',
+                email: 'reservations@keralahouseboat.com',
+                rating: 4.4,
+                reviews: 1200,
+                amenities: ['WiFi', 'Pool', 'Rooftop Bar', 'Restaurant', 'Backwater Tours', 'Parking', 'Room Service'],
+                features: ['Houseboat Experience', 'Backwater Views', 'Ayurvedic Treatments', 'Water Sports', 'Local Cuisine', 'Sunset Cruises', 'Yoga Center', 'Nature Tours'],
+                price: 3500,
+                category: 'budget',
+                image:'https://alleppeyhouseboat.in/wp-content/uploads/2019/02/houseboat-Copy-1024x512.jpg',
+                description: 'Experience Kerala\'s unique charm at Kerala Houseboat. Drift through serene backwaters with authentic Kerala hospitality and Ayurvedic wellness.'
+            },
+            {
+                id: 8,
+                name: 'Pune Elegance Hotel',
+                city: 'Pune',
+                location: 'Koregaon Park, Pune',
+                address: 'Koregaon Park, Pune 411001',
+                phone: '+91 20-6665 5555',
+                email: 'reservations@puneelegance.com',
+                rating: 4.8,
+                reviews: 2600,
+                amenities: ['WiFi', 'Garden View', 'Multiple Pools', 'Spa', 'Gym', 'Restaurant', 'Bar', 'Concierge'],
+                features: ['Lush Green Gardens', 'Olympic Pool', 'Ayurvedic Spa', 'Fine Dining', 'Wellness Center', 'Executive Lounge', 'Event Spaces', 'Free WiFi'],
+                price: 7200,
+                category: '5-star luxury',
+                image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKnwLypp0F5NA0-whUZ4drUtcN5grQMSo0ng&s',
+                description: 'Indulge in elegance at Pune Elegance Hotel, nestled in peaceful Koregaon Park with world-class amenities and serene surroundings.'
+            }
+        ];
+
+        let foodCart = [];
+        let currentFoodCategory = 'breakfast';
+
+        // Initialize
+        function init() {
+            renderHotels(hotels);
+            setMinDate();
+            displayFoodItems('breakfast');
+        }
+
+        // Set minimum date to today
+        function setMinDate() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('checkInDate').setAttribute('min', today);
+            document.getElementById('checkOutDate').setAttribute('min', today);
+        }
+
+        // Display food items with images and descriptions
+        function displayFoodItems(category) {
+            const foodGrid = document.getElementById('foodItemsGrid');
+            const items = foodMenu[category];
+            
+            if (!foodGrid) return;
+            
+            foodGrid.innerHTML = items.map(item => `
+                <div class="food-item-card">
+                    <div class="food-item-image">${item.emoji}</div>
+                    <div class="food-item-name">${item.name}</div>
+                    <div class="food-item-desc">${item.desc}</div>
+                    <div class="food-item-price">₹${item.price}</div>
+                    <div class="food-item-quantity">
+                        <button onclick="decrementFood(${item.id})">−</button>
+                        <input type="number" id="food-${item.id}" value="0" min="0" readonly>
+                        <button onclick="incrementFood(${item.id})">+</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Filter food category
+        function filterFoodCategory(element, category) {
+            document.querySelectorAll('.food-category-btn').forEach(btn => btn.classList.remove('active'));
+            element.classList.add('active');
+            currentFoodCategory = category;
+            displayFoodItems(category);
+        }
+
+        // Increment food quantity
+        function incrementFood(foodId) {
+            const item = document.getElementById(`food-${foodId}`);
+            if (item) {
+                item.value = parseInt(item.value) + 1;
+                updateFoodCart();
+            }
+        }
+
+        // Decrement food quantity
+        function decrementFood(foodId) {
+            const item = document.getElementById(`food-${foodId}`);
+            if (item && parseInt(item.value) > 0) {
+                item.value = parseInt(item.value) - 1;
+                updateFoodCart();
+            }
+        }
+
+        // Update food cart
+        function updateFoodCart() {
+            foodCart = [];
+            let total = 0;
+
+            Object.keys(foodMenu).forEach(category => {
+                foodMenu[category].forEach(item => {
+                    const itemElem = document.getElementById(`food-${item.id}`);
+                    const qty = itemElem ? parseInt(itemElem.value) : 0;
+                    if (qty > 0) {
+                        foodCart.push({ ...item, quantity: qty });
+                        total += item.price * qty;
+                    }
+                });
+            });
+
+            const cartItems = document.getElementById('foodCartItems');
+            const cartTotal = document.getElementById('foodCartTotal');
+
+            if (foodCart.length === 0) {
+                cartItems.innerHTML = '<div class="food-empty-message">Your cart is empty</div>';
+                cartTotal.textContent = '₹0';
+            } else {
+                cartItems.innerHTML = foodCart.map(item => `
+                    <div class="food-cart-item">
+                        <div class="food-cart-item-info">
+                            <h4>${item.emoji} ${item.name}</h4>
+                            <p>₹${item.price} x ${item.quantity} = ₹${item.price * item.quantity}</p>
+                        </div>
+                        <button class="food-cart-item-delete" onclick="removeFoodItem(${item.id})">Remove</button>
+                    </div>
+                `).join('');
+                cartTotal.textContent = '₹' + total;
+            }
+
+            updateCartBadge();
+        }
+
+        // Remove food item
+        function removeFoodItem(foodId) {
+            Object.keys(foodMenu).forEach(category => {
+                foodMenu[category].forEach(item => {
+                    if (item.id === foodId) {
+                        const elem = document.getElementById(`food-${foodId}`);
+                        if (elem) elem.value = 0;
+                    }
+                });
+            });
+            updateFoodCart();
+        }
+
+        // Update cart badge
+        function updateCartBadge() {
+            const badge = document.getElementById('foodCartBadge');
+            if (foodCart.length > 0) {
+                if (!badge) {
+                    const total = foodCart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                    const html = `
+                        <div class="food-cart-badge" id="foodCartBadge" onclick="openFoodCart()">
+                            <span>🛒 ${foodCart.length} items</span>
+                            <div class="food-cart-count">₹${total}</div>
+                        </div>
+                    `;
+                    document.body.insertAdjacentHTML('beforeend', html);
+                } else {
+                    const total = foodCart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                    badge.innerHTML = `
+                        <span>🛒 ${foodCart.length} items</span>
+                        <div class="food-cart-count">₹${total}</div>
+                    `;
+                }
+            } else if (badge) {
+                badge.remove();
+            }
+        }
+
+        // Open food cart
+        function openFoodCart() {
+            document.getElementById('foodCartModal').classList.add('active');
+        }
+
+        // Close food cart
+        function closeFoodCart() {
+            document.getElementById('foodCartModal').classList.remove('active');
+        }
+
+        // Checkout food
+        function checkoutFood() {
+            if (foodCart.length === 0) {
+                alert('Your food cart is empty!');
+                return;
+            }
+            const total = foodCart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            alert(`✅ Food Order Total: ₹${total}\nProceeding to add to your hotel booking...`);
+            closeFoodCart();
+        }
+
+        
+        // Get hotel image based on ID
+        function getHotelImage(hotelId) {
+            const hotelImages = {
+                1: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&h=400&fit=crop',
+                2: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&h=400&fit=crop',
+                3: 'https://images.unsplash.com/photo-1566665556112-52a86ae1ee4a?w=600&h=400&fit=crop',
+                4: 'https://images.unsplash.com/photo-1564078516677-1b28daf1987f?w=600&h=400&fit=crop',
+                5: 'https://images.unsplash.com/photo-1565182999555-65edfe6c30ba?w=600&h=400&fit=crop',
+                6: 'https://images.unsplash.com/photo-1604180737787-307bff4cebb5?w=600&h=400&fit=crop',
+                7: 'https://images.unsplash.com/photo-1531217683100-75a9c25ce119?w=600&h=400&fit=crop',
+                8: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=600&h=400&fit=crop'
+            };
+            return hotelImages[hotelId] || 'https://images.unsplash.com/photo-1571896349842-03aae9827e19?w=600&h=400&fit=crop';
+        }
+
+function renderHotels(hotelList) {
+    const hotelsList = document.getElementById('hotelsList');
+    hotelsList.innerHTML = hotelList.map(hotel => `
+        <div class="hotel-card">
+            <img 
+                class="hotel-image" 
+                src="${hotel.image || getHotelImage(hotel.id)}" 
+                alt="${hotel.name}"
+            >
+            <div class="hotel-content">
+                <div class="hotel-name">${hotel.name}</div>
+                <div class="hotel-location">📍 ${hotel.location}</div>
+
+                <div class="rating">
+                    <span class="stars">${'⭐'.repeat(Math.floor(hotel.rating))}</span>
+                    <span class="rating-value">${hotel.rating}</span>
+                    <span style="font-size: 12px; color: var(--text-light);">
+                        (${hotel.reviews} reviews)
+                    </span>
+                </div>
+
+                <div class="hotel-amenities">
+                    ${hotel.amenities.slice(0, 3).map(a => `<div class="amenity">${a}</div>`).join('')}
+                </div>
+
+                <div class="price-section">
+                    <div>
+                        <div class="price">₹${hotel.price.toLocaleString()}</div>
+                        <div class="price-label">per night</div>
+                    </div>
+                    <button class="book-btn" onclick="viewHotelDetails('${hotel.name}')">
+                        View Details
+                    </button>
+                </div>
+            </div>
+        </div>
+    `).join('');
+}
+
+
+        // Select city
+        function selectCity(cityName) {
+            document.getElementById('citySelect').value = cityName;
+            searchHotels();
+        }
+
+        // Search hotels
+        function searchHotels() {
+            const city = document.getElementById('citySelect').value;
+            const checkIn = document.getElementById('checkInDate').value;
+            const checkOut = document.getElementById('checkOutDate').value;
+
+            if (!city || !checkIn || !checkOut) {
+                alert('Please fill in all search fields');
+                return;
+            }
+
+            const filtered = hotels.filter(h => h.city === city);
+            if (filtered.length === 0) {
+                alert(`No hotels found in ${city}. Try another city!`);
+                return;
+            }
+
+            renderHotels(filtered);
+            document.querySelector('.hotels-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Toggle filter
+        function toggleFilter(element, category) {
+            document.querySelectorAll('.filter-chip').forEach(chip => chip.classList.remove('active'));
+            element.classList.add('active');
+
+            if (category === '5-star') {
+                renderHotels(hotels.filter(h => h.category.includes('5-star')));
+            } else if (category === '4-star') {
+                renderHotels(hotels.filter(h => h.category.includes('4-star')));
+            } else if (category === 'budget') {
+                renderHotels(hotels.filter(h => h.category === 'budget'));
+            } else if (category === 'luxury') {
+                renderHotels(hotels.filter(h => h.category.includes('luxury')));
+            }
+        }
+
+        // View hotel details
+        function viewHotelDetails(hotelName) {
+            const hotel = hotels.find(h => h.name === hotelName);
+            if (!hotel) return;
+
+            const modal = document.createElement('div');
+            modal.className = 'detail-modal active';
+            modal.id = 'hotelDetailModal';
+
+            modal.innerHTML = `
+                <div class="detail-content">
+                    <div class="detail-header">
+                        <button class="detail-close" onclick="document.getElementById('hotelDetailModal').remove()">×</button>
+                        <div class="detail-title">
+                            <h1>${hotel.name}</h1>
+                            <div class="detail-rating">
+                                <span>⭐${hotel.rating}</span>
+                                <span>(${hotel.reviews} reviews)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-body">
+                        <div class="detail-section">
+                            <p style="font-size: 16px; color: var(--text-light); line-height: 1.8;">${hotel.description}</p>
+                        </div>
+
+                        <div class="detail-section">
+                            <h3 class="detail-section-title">📍 Location & Contact</h3>
+                            <button class="btn btn-primary" onclick="openGoogleMaps('${hotel.address}, ${hotel.city}')" style="margin-bottom: 20px;">View on Google Maps</button>
+                            <div id="mapContainer" style="width: 100%; height: 400px; border-radius: 12px; margin-bottom: 20px; background: linear-gradient(135deg, #e0e7ff 0%, #f0fdf4 100%); display: flex; align-items: center; justify-content: center; color: var(--text-light);">
+                                <div style="text-align: center;">
+                                    <div style="font-size: 48px; margin-bottom: 10px;">📍</div>
+                                    <p>Click "View on Google Maps" to see location</p>
+                                </div>
+                            </div>
+                            <div class="location-info">
+                                <div class="location-detail">
+                                    <div class="location-detail-icon">📮</div>
+                                    <div class="location-detail-text">
+                                        <h4>Address</h4>
+                                        <p>${hotel.address}</p>
+                                    </div>
+                                </div>
+                                <div class="location-detail">
+                                    <div class="location-detail-icon">📞</div>
+                                    <div class="location-detail-text">
+                                        <h4>Phone</h4>
+                                        <p>${hotel.phone}</p>
+                                    </div>
+                                </div>
+                                <div class="location-detail">
+                                    <div class="location-detail-icon">✉️</div>
+                                    <div class="location-detail-text">
+                                        <h4>Email</h4>
+                                        <p>${hotel.email}</p>
+                                    </div>
+                                </div>
+                                <div class="location-detail">
+                                    <div class="location-detail-icon">🏙️</div>
+                                    <div class="location-detail-text">
+                                        <h4>City</h4>
+                                        <p>${hotel.city}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="detail-section">
+                            <div class="price-box">
+                                <div>
+                                    <h3>Price Per Night</h3>
+                                    <p class="price-amount">₹${hotel.price.toLocaleString()}</p>
+                                </div>
+                                <div style="text-align: right;">
+                                    <p style="margin: 0 0 8px 0; opacity: 0.9;">Click Book Now to proceed with booking</p>
+                                    <button class="btn btn-lg btn-primary" onclick="goToBookingPage('${hotel.name}', ${hotel.price}, '${hotel.city}')">Book Now</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="detail-section">
+                            <h3 class="detail-section-title">🎁 Amenities</h3>
+                            <div class="amenities-grid">
+                                ${hotel.amenities.map(a => `
+                                    <div class="amenity-card">
+                                        <div class="amenity-icon">${getAmenityIcon(a)}</div>
+                                        <div class="amenity-name">${a}</div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+
+                        <div class="detail-section">
+                            <h3 class="detail-section-title">⭐ Special Features</h3>
+                            <div class="features-list">
+                                ${hotel.features.map(f => `<div class="feature-item">${f}</div>`).join('')}
+                            </div>
+                        </div>
+
+                        <div class="detail-section">
+                            <h3 class="detail-section-title">🍽️ Add Food for Your Stay</h3>
+                            <div style="background: #f0f9ff; padding: 20px; border-radius: 12px; border-left: 4px solid var(--accent);">
+                                <div class="food-categories" style="margin-bottom: 16px;">
+                                    <button class="food-category-btn active" onclick="filterFoodCategory(this, 'breakfast')">🥣 Breakfast</button>
+                                    <button class="food-category-btn" onclick="filterFoodCategory(this, 'lunch')">🍽️ Lunch</button>
+                                    <button class="food-category-btn" onclick="filterFoodCategory(this, 'dinner')">🍳 Dinner</button>
+                                    <button class="food-category-btn" onclick="filterFoodCategory(this, 'snacks')">🍪 Snacks</button>
+                                    <button class="food-category-btn" onclick="filterFoodCategory(this, 'beverages')">☕ Beverages</button>
+                                </div>
+                                <div class="food-items-grid" id="foodItemsGrid" style="max-height: 400px;">
+                                    <!-- Food items will be populated here -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="detail-section">
+                            <h3 class="detail-section-title">💬 Contact Hotel</h3>
+                            <div class="contact-section">
+                                <form class="contact-form" onsubmit="sendHotelInquiry(event, '${hotel.name}')">
+                                    <input type="text" placeholder="Your Full Name" required>
+                                    <input type="email" placeholder="Your Email" required>
+                                    <input type="tel" placeholder="Your Phone" required>
+                                    <input type="text" placeholder="Check-in Date" required>
+                                    <textarea class="contact-form-full" placeholder="Your Message or Special Requests..." rows="4" required></textarea>
+                                    <button type="submit" style="grid-column: 1 / -1;" class="btn btn-primary">Send Inquiry to Hotel</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-footer">
+                        <button class="btn btn-secondary" onclick="document.getElementById('hotelDetailModal').remove()">Close</button>
+                        <button class="btn btn-primary" onclick="goToBookingPage('${hotel.name}', ${hotel.price}, '${hotel.city}')">Book Now</button>
+                    </div>
+                </div>
+            `;
+
+            document.body.appendChild(modal);
+            displayFoodItems('breakfast');
+        }
+
+        // Get amenity icon
+        function getAmenityIcon(amenity) {
+            const icons = {
+                'WiFi': '📶', 'Pool': '🏊', 'Spa': '🧖', 'Restaurant': '🍽️', 'Gym': '💪', 'Bar': '🍺', 'Room Service': '🛎️',
+                'Concierge': '🎩', 'Heritage Tour': '🗺️', 'Multiple Restaurants': '🍽️', 'Rooftop Bar': '🌆', 'Conference Rooms': '💼',
+                'Parking': '🅿️', 'Laundry': '🧺', 'Lounge': '🪑', 'Business Center': '💻', 'Meeting Rooms': '🤝',
+                'Water Sports': '🏄', 'Café': '☕', 'Backwater Tours': '🚤'
+            };
+            return icons[amenity] || '✨';
+        }
+
+        // Send hotel inquiry
+        function sendHotelInquiry(event, hotelName) {
+            event.preventDefault();
+            alert(`✅ Inquiry Sent!\nYour message has been sent to ${hotelName}. We will contact you within 24 hours.`);
+            event.target.reset();
+        }
+
+        // Go to booking page
+        function goToBookingPage(hotelName, price, city) {
+            const checkIn = document.getElementById('checkInDate').value;
+            const checkOut = document.getElementById('checkOutDate').value;
+
+            if (!checkIn || !checkOut) {
+                alert('Please select check-in and check-out dates');
+                return;
+            }
+
+            const nights = Math.ceil((new Date(checkOut) - new Date(checkIn)) / (1000 * 60 * 60 * 24));
+            if (nights <= 0) {
+                alert('Check-out date must be after check-in date');
+                return;
+            }
+
+            showBookingPage(hotelName, price, city, checkIn, checkOut, nights);
+        }
+
+        // Show booking page
+        function showBookingPage(hotelName, pricePerNight, city, checkIn, checkOut, nights) {
+            const totalPrice = pricePerNight * nights;
+            const gst = Math.round(totalPrice * 0.18);
+            const finalTotal = totalPrice + gst;
+
+            const bookingPage = document.createElement('div');
+            bookingPage.id = 'bookingPageModal';
+            bookingPage.style.cssText = `position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg); z-index: 1500; overflow-y: auto;`;
+
+            bookingPage.innerHTML = `
+                <header style="background: var(--surface); padding: 16px 40px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,0.08);">
+                    <div class="logo" style="cursor: pointer;">🏨 SleepyGo</div>
+                    <button onclick="closeBookingPage()" style="background: none; border: none; font-size: 24px; cursor: pointer;">×</button>
+                </header>
+
+                <div style="max-width: 1200px; margin: 40px auto; padding: 0 20px;">
+                    <h1 style="margin-bottom: 40px; color: var(--primary);">Booking Dashboard</h1>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 40px;">
+                        <div>
+                            <div style="background: var(--surface); border-radius: 12px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-bottom: 24px;">
+                                <h2 style="color: var(--primary); margin: 0 0 20px 0; font-size: 20px;">Booking Summary</h2>
+                                <div style="display: flex; gap: 16px; margin-bottom: 20px; padding: 16px; background: var(--accent-light); border-radius: 8px;">
+                                    <div style="flex: 1;">
+                                        <p style="color: var(--text-light); font-size: 12px; margin: 0 0 4px 0;">Hotel Name</p>
+                                        <p style="margin: 0; font-weight: 700; color: var(--primary);">${hotelName}</p>
+                                    </div>
+                                    <div style="flex: 1;">
+                                        <p style="color: var(--text-light); font-size: 12px; margin: 0 0 4px 0;">City</p>
+                                        <p style="margin: 0; font-weight: 700;">${city}</p>
+                                    </div>
+                                </div>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px;">
+                                    <div style="padding: 12px; background: var(--bg); border-radius: 8px;">
+                                        <p style="color: var(--text-light); font-size: 12px; margin: 0 0 4px 0;">Check-In</p>
+                                        <p style="margin: 0; font-weight: 600;">${checkIn}</p>
+                                    </div>
+                                    <div style="padding: 12px; background: var(--bg); border-radius: 8px;">
+                                        <p style="color: var(--text-light); font-size: 12px; margin: 0 0 4px 0;">Check-Out</p>
+                                        <p style="margin: 0; font-weight: 600;">${checkOut}</p>
+                                    </div>
+                                </div>
+                                <div style="padding: 12px; background: var(--bg); border-radius: 8px; margin-bottom: 20px;">
+                                    <p style="color: var(--text-light); font-size: 12px; margin: 0 0 4px 0;">Number of Nights</p>
+                                    <p style="margin: 0; font-weight: 600; font-size: 18px;">${nights} Night${nights !== 1 ? 's' : ''}</p>
+                                </div>
+                                <div style="border-top: 2px solid var(--border); padding-top: 20px;">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                                        <span style="color: var(--text-light);">Price per night</span>
+                                        <span style="font-weight: 600;">₹${pricePerNight.toLocaleString()}</span>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                                        <span style="color: var(--text-light);">Subtotal</span>
+                                        <span style="font-weight: 600;">₹${totalPrice.toLocaleString()}</span>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 16px;">
+                                        <span style="color: var(--text-light);">GST (18%)</span>
+                                        <span style="font-weight: 600; color: var(--primary);">₹${gst.toLocaleString()}</span>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; padding: 16px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; border-radius: 8px; font-size: 18px; font-weight: 700;">
+                                        <span>Total Amount</span>
+                                        <span>₹${finalTotal.toLocaleString()}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div style="background: var(--surface); border-radius: 12px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                                <h2 style="color: var(--primary); margin: 0 0 20px 0; font-size: 20px;">🍽️ Food Orders</h2>
+                                ${foodCart.length > 0 ? `
+                                    <div style="max-height: 300px; overflow-y: auto;">
+                                        ${foodCart.map(item => `
+                                            <div style="padding: 12px; background: var(--bg); border-radius: 8px; margin-bottom: 12px; display: flex; justify-content: space-between;">
+                                                <div>
+                                                    <p style="margin: 0; font-weight: 600;">${item.emoji} ${item.name}</p>
+                                                    <p style="margin: 0; font-size: 12px; color: var(--text-light);">₹${item.price} x ${item.quantity}</p>
+                                                </div>
+                                                <p style="margin: 0; font-weight: 600; color: var(--accent);">₹${item.price * item.quantity}</p>
+                                            </div>
+                                        `).join('')}
+                                    </div>
+                                    <div style="border-top: 2px solid var(--border); padding-top: 16px; margin-top: 16px;">
+                                        <div style="display: flex; justify-content: space-between; font-weight: 700; color: var(--accent);">
+                                            <span>Food Total:</span>
+                                            <span>₹${foodCart.reduce((sum, item) => sum + (item.price * item.quantity), 0)}</span>
+                                        </div>
+                                    </div>
+                                ` : `
+                                    <p style="text-align: center; color: var(--text-light); padding: 20px;">No food items selected</p>
+                                    <button class="btn btn-primary" style="width: 100%;" onclick="openFoodCart()">Add Food Items</button>
+                                `}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="background: var(--surface); border-radius: 12px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-bottom: 40px;">
+                        <h2 style="color: var(--primary); margin: 0 0 20px 0; font-size: 20px;">Guest Details</h2>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                            <div>
+                                <label style="display: block; color: var(--text-light); font-size: 12px; margin-bottom: 6px; font-weight: 600;">Full Name</label>
+                                <input type="text" placeholder="Enter your full name" style="width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 14px;">
+                            </div>
+                            <div>
+                                <label style="display: block; color: var(--text-light); font-size: 12px; margin-bottom: 6px; font-weight: 600;">Email</label>
+                                <input type="email" placeholder="your@email.com" style="width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 14px;">
+                            </div>
+                            <div>
+                                <label style="display: block; color: var(--text-light); font-size: 12px; margin-bottom: 6px; font-weight: 600;">Phone</label>
+                                <input type="tel" placeholder="+91 XXXXX XXXXX" style="width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 14px;">
+                            </div>
+                            <div>
+                                <label style="display: block; color: var(--text-light); font-size: 12px; margin-bottom: 6px; font-weight: 600;">Address</label>
+                                <input type="text" placeholder="Your address" style="width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 14px;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 40px;">
+                        <button onclick="closeBookingPage()" style="padding: 14px 24px; border: 2px solid var(--border); background: white; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 16px;">Back</button>
+                        <button onclick="completePayment('${hotelName}', ${finalTotal})" style="padding: 14px 24px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 16px;">Proceed to Payment</button>
+                    </div>
+                </div>
+            `;
+
+            document.body.appendChild(bookingPage);
+        }
+
+        // Close booking page
+        function closeBookingPage() {
+            const modal = document.getElementById('bookingPageModal');
+            if (modal) modal.remove();
+            const detailModal = document.getElementById('hotelDetailModal');
+            if (detailModal) detailModal.remove();
+        }
+
+        // Complete payment
+        function completePayment(hotelName, finalTotal) {
+            alert(`✅ Payment Successful!\n\nHotel: ${hotelName}\nTotal: ₹${finalTotal.toLocaleString()}\n\nBooking Confirmed!`);
+            closeBookingPage();
+        }
+
+        // Open Google Maps
+        function openGoogleMaps(address) {
+            const mapsUrl = `https://www.google.com/maps/search/${encodeURIComponent(address)}`;
+            window.open(mapsUrl, '_blank');
+        }
+
+        // Initialize
+        window.addEventListener('load', init);
+    </script>
+</body>
+</html>
